@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chuck Norris Facts</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="CNfacts" v-cloak>
+        
+        <h1>{{appName}}</h1>
+
+        <!-- <select v-model="categoryChosen" v-on:change="getFactFromCategory(categoryChosen)"> -->
+        <select v-model="categoryChosen">
+            <option v-for="category in listOfCategories">{{category}}</option>
+        </select>
+        <button type="submit" v-on:click="getFactFromCategory(categoryChosen)">get Fact</button>
+
+        <input type="text" v-model="currentSearch" placeholder="Search.." name="search">
+        <button type="submit" v-on:click="getSearch">Seach</button>
+
+        <div v-show="!searchOrGet">
+            <p v-show="isFetchingAFact">Fetching...</p>
+            <h3 v-show="!isFetchingAFact">{{currentFact}}</h3>
+            <p v-if="previousFacts.length">Previous Facts</p>
+            <ol>
+                <li v-for="fact in previousFacts">{{fact}}</li>
+            </ol>
+        </div>
+
+        <div v-show="searchOrGet">
+        <p v-if="previousSearchs.length">Previous Search</p>
+        <ol>
+            <li v-for="search in previousSearchs">{{search}}</li>
+        </ol>
+
+        <p v-if="searchResults.length">Search Results:</p>
+        <p v-show="isFetchingASearch">Fetching...</p>
+        <div v-show="!isFetchingASearch">
+            <ol>
+                <li v-for="search in searchResults"><span v-html="$options.filters.highlight(search, currentSearch)">{{ search }}</span></li>
+            </ol>
+        </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>

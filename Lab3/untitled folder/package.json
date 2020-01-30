@@ -1,0 +1,16 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.0",
+  "description": "cli app for math simple math quizzes",
+  "main": "app.js",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "yargs": "^6.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cydney Mikel",
+  "license": "MIT"
+}
